@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<layout version="0.1.0">
+
+    <default>
+        <reference name="content">
+            <block type="core/template" name="custom_template" template="ism/productextra.phtml"/>
+        </reference>
+    </default>
+
+</layout>
