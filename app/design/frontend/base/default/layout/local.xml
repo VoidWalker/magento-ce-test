@@ -7,6 +7,16 @@
                 <script>test/test.js</script>
             </action>
         </reference>
+        <reference name="top.links">
+            <action method="addLink" translate="label title">
+                <label>Sohan CMS</label>
+                <url>about-magento-demo-store</url>
+                <title>Sohan CMS</title>
+                <prepare>true</prepare>
+                <urlParams/>
+                <position>105</position>
+            </action>
+        </reference>
     </default>
 
     <cms_index_index translate="label">
