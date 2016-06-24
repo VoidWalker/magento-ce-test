@@ -25,6 +25,7 @@
 ## default index file
 
     DirectoryIndex index.php
+    SetEnv MAGE_IS_DEVELOPER_MODE "true"
 
 <IfModule mod_php5.c>
 
