@@ -5,21 +5,21 @@ $installer = $this;
 $installer->startSetup();
 $table = $installer->getConnection()
     ->newTable($installer->getTable('weblog/blogpost'))
-    ->addColumn('blogpost_id', Varien_Db_Ddl_Table::TYPE_INTEGER, 11, array(
-        'identity' => true,
+    ->addColumn('blogpost_id', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
         'unsigned' => true,
         'nullable' => false,
         'primary' => true,
-    ))
-    ->addColumn('title', Varien_Db_Ddl_Table::TYPE_TEXT)
-    ->addColumn('post', Varien_Db_Ddl_Table::TYPE_TEXT)
-    ->addColumn('date', Varien_Db_Ddl_Table::TYPE_DATETIME, null, array(
-        'default' => null
-    ))
-    ->addColumn('timestamp', Varien_Db_Ddl_Table::TYPE_TIMESTAMP, null, array(
-        'default' => Varien_Db_Ddl_Table::TIMESTAMP_INIT,
-        'nullable' => false
-    ));
+        'identity' => true,
+    ), 'Blogpost ID')
+    ->addColumn('title', Varien_Db_Ddl_Table::TYPE_TEXT, null, array(
+        'nullable' => false,
+    ), 'Blogpost Title')
+    ->addColumn('post', Varien_Db_Ddl_Table::TYPE_TEXT, null, array(
+        'nullable' => true,
+    ), 'Blogpost Body')
+    ->addColumn('date', Varien_Db_Ddl_Table::TYPE_DATETIME, null, array(), 'Blogpost Date')
+    ->addColumn('timestamp', Varien_Db_Ddl_Table::TYPE_TIMESTAMP, null, array(), 'Timestamp')
+    ->setComment('Magentotutorial weblog/blogpost entity table');
 $installer->getConnection()->createTable($table);
 
 /*

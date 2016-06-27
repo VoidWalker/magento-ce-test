@@ -9,48 +9,68 @@ class Sohan_Complexworld_IndexController extends Mage_Core_Controller_Front_Acti
         var_dump($weblog2);
     }
 
-    public function testModelAction()
+    public function populateEntriesAction()
     {
-        $params = $this->getRequest()->getParams();
-        $blogpost = Mage::getModel('complexworld/weblogeav');
-        echo("Loading the blogpost with an ID of " . $params['id']);
-        $blogpost->load($params['id']);
-        $data = $blogpost->getData();
-        var_dump($data);
-    }
-
-    public function createNewPostAction()
-    {
-        $blogpost = Mage::getModel('complexworld/weblogeav');
-        $blogpost->setTitle('Code Post!');
-        $blogpost->setPost('This post was created from code!');
-        $blogpost->save();
-        echo 'post with ID ' . $blogpost->getId() . ' created';
-    }
-
-    public function editFirstPostAction()
-    {
-        $blogpost = Mage::getModel('complexworld/weblogeav');
-        $blogpost->load(1);
-        $blogpost->setTitle("The First post!");
-        $blogpost->save();
-        echo 'post edited';
-    }
-
-    public function deleteFirstPostAction()
-    {
-        $blogpost = Mage::getModel('complexworld/weblogeav');
-        $blogpost->load(1);
-        $blogpost->delete();
-        echo 'post removed';
-    }
-
-    public function showAllBlogPostsAction()
-    {
-        $posts = Mage::getModel('complexworld/weblogeav')->getCollection();
-        foreach ($posts as $blogpost) {
-            echo '<h3>' . $blogpost->getTitle() . '</h3>';
-            echo nl2br($blogpost->getPost());
+        for ($i = 0; $i < 10; $i++) {
+            $weblog2 = Mage::getModel('complexworld/eavblogpost');
+            $weblog2->setTitle('This is a test ' . $i);
+            $weblog2->setContent('This is test content ' . $i);
+            $weblog2->setDate(now());
+            $weblog2->save();
         }
+
+        echo 'Done';
+    }
+
+    public function showCollectionAction()
+    {
+        /**$weblog2 = Mage::getModel('complexworld/eavblogpost');
+         * $entries = $weblog2->getCollection()
+         * ->addAttributeToSelect('title')
+         * ->addAttributeToSelect('content');
+         * $entries->load();
+         * foreach ($entries as $entry) {
+         * // var_dump($entry->getData());
+         * echo '<h2>' . $entry->getTitle() . '</h2>';
+         * echo '<p>Date: ' . $entry->getDate() . '</p>';
+         * echo '<p>' . $entry->getContent() . '</p>';
+         * }
+         * echo '</br>Done</br>';
+         */
+        /** @var Varien_Object $thing_1 */
+        $thing_1 = new Varien_Object();
+        $thing_1->setName('Richard');
+        $thing_1->setAge(24);
+
+        /** @var Varien_Object $thing_2 */
+        $thing_2 = new Varien_Object();
+        $thing_2->setName('Jane');
+        $thing_2->setAge(12);
+
+        /** @var Varien_Object $thing_3 */
+        $thing_3 = new Varien_Object();
+        $thing_3->setName('Spot');
+        $thing_3->setLastName('The Dog');
+        $thing_3->setAge(7);
+
+        $collection_of_things = new Varien_Data_Collection();
+        $collection_of_things
+            ->addItem($thing_1)
+            ->addItem($thing_2)
+            ->addItem($thing_3);
+
+        var_dump($collection_of_things->getColumnValues('name'));
+    }
+
+    public function testAction()
+    {
+        var_dump(
+            (string)
+            Mage::getModel('catalog/product')
+                ->getCollection()
+                ->addAttributeToSelect('*')
+                ->addFieldToFilter('meta_title', 'my title')
+                ->getSelect()
+        );
     }
 }
