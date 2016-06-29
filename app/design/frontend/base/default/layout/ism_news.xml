@@ -2,7 +2,7 @@
 <layout version="0.1.0">
     <news_index_index>
         <reference name="content">
-            <block type="core/template" name="news" template="news/list.phtml"/>
+            <block type="core/template" name="news" template="ism_news/list.phtml"/>
         </reference>
     </news_index_index>
 </layout>
