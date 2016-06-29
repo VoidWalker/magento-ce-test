@@ -71,7 +71,7 @@ class Ism_News_Block_Manage_Post_Edit_Form extends Mage_Adminhtml_Block_Widget_F
             array(
                 'label' => Mage::helper('news')->__('Announce'),
                 'name' => 'announce',
-                'style' => 'width:700px; height:100px;',
+                'style' => 'width:700px; height:100px;'
             )
         );
 
@@ -81,7 +81,7 @@ class Ism_News_Block_Manage_Post_Edit_Form extends Mage_Adminhtml_Block_Widget_F
             array(
                 'label' => Mage::helper('news')->__('Content'),
                 'name' => 'content',
-                'style' => 'width:700px; height:500px;',
+                'style' => 'width:700px; height:500px;'
             )
         );
 
@@ -93,7 +93,8 @@ class Ism_News_Block_Manage_Post_Edit_Form extends Mage_Adminhtml_Block_Widget_F
                 'name' => 'date',
                 'image' => $this->getSkinUrl('images/grid-cal.gif'),
                 'format' => Mage::app()->getLocale()->getDateTimeFormat(Mage_Core_Model_Locale::FORMAT_TYPE_MEDIUM),
-                'required' => true
+                'required' => true,
+                'style' => 'width:200px;'
             )
         );
 

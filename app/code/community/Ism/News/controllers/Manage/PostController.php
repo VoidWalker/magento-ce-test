@@ -49,7 +49,7 @@ class Ism_News_Manage_PostController extends Mage_Adminhtml_Controller_Action
             $this->_setActiveMenu('cms/news');
             $this->_title($this->__('Edit post'))->_title($this->__('News'));
             $this->getLayout()->getBlock('head')->setCanLoadExtJs(true);
-            
+
             $this->_addContent($this->getLayout()->createBlock('news/manage_post_edit'));
 
             $this->renderLayout();
@@ -57,5 +57,50 @@ class Ism_News_Manage_PostController extends Mage_Adminhtml_Controller_Action
             Mage::getSingleton('adminhtml/session')->addError(Mage::helper('news')->__('Post does not exist'));
             $this->_redirect('*/*/');
         }
+    }
+
+    public function saveAction()
+    {
+        if ($data = $this->getRequest()->getPost()) {
+            $model = Mage::getModel('news/news');
+
+            $model
+                ->setData($data)
+                ->setId($this->getRequest()->getParam('id'));
+
+            try {
+                $format = Mage::app()->getLocale()->getDateTimeFormat(Mage_Core_Model_Locale::FORMAT_TYPE_MEDIUM);
+                if (isset($data['date']) && $data['date']) {
+                    $dateFrom = Mage::app()->getLocale()->date($data['date'], $format);
+                    $model->setDate(Mage::getModel('core/date')->gmtDate(null, $dateFrom->getTimestamp()));
+                } else {
+                    $model->setDate(Mage::getModel('core/date')->gmtDate());
+                }
+
+                $model->save();
+
+                Mage::getSingleton('adminhtml/session')->addSuccess(
+                    Mage::helper('news')->__('Post was successfully saved')
+                );
+                Mage::getSingleton('adminhtml/session')->setFormData(false);
+
+                if ($this->getRequest()->getParam('back')) {
+                    $this->_redirect('*/*/edit', array('id' => $model->getId()));
+
+                    return;
+                }
+                $this->_redirect('*/*/');
+
+                return;
+            } catch (Exception $e) {
+                Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
+                Mage::getSingleton('adminhtml/session')->setFormData($data);
+                $this->_redirect('*/*/edit', array('id' => $this->getRequest()->getParam('id')));
+
+                return;
+            }
+        }
+        Mage::getSingleton('adminhtml/session')->addError(Mage::helper('news')->__('Unable to find post to save'));
+        $this->_redirect('*/*/');
     }
 } 
