@@ -3,7 +3,11 @@
 </div>
 <?php $posts = $this->getNews(); ?>
 <?php foreach ($posts as $post): ?>
-    <h3><?php echo $post->getTitle(); ?></h3>
+    <h2>
+        <a href="/news/post/view/id/<?php echo $post->getNewsId(); ?>">
+            <?php echo $post->getTitle(); ?>
+        </a>
+    </h2>
 <?php endforeach; ?>
 <div id="messages_product_view">
     <?php Mage::app()->getLayout()->getMessagesBlock()->setMessages(Mage::getSingleton('customer/session')->getMessages(true)); ?>
