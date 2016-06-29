@@ -8,8 +8,8 @@ class Ism_News_Block_Manage_Post_Edit_Form extends Mage_Adminhtml_Block_Widget_F
             array(
                 'id' => 'edit_form',
                 'action' => $this->getUrl(
-                        '*/*/save', array('id' => $this->getRequest()->getParam('id'))
-                    ),
+                    '*/*/save', array('id' => $this->getRequest()->getParam('id'))
+                ),
                 'method' => 'post',
             )
         );
@@ -31,22 +31,57 @@ class Ism_News_Block_Manage_Post_Edit_Form extends Mage_Adminhtml_Block_Widget_F
         );
 
         $fieldset->addField(
-            'content',
-            'text',
+            'is_published',
+            'select',
             array(
-                'label' => Mage::helper('news')->__('Content'),
-                'name' => 'content',
-                'required' => true
+                'label' => Mage::helper('news')->__('Published'),
+                'name' => 'is_published',
+                'required' => true,
+                'values' => array(
+                    array(
+                        'value' => 0,
+                        'label' => Mage::helper('blog')->__('Disabled'),
+                    ),
+                    array(
+                        'value' => 1,
+                        'label' => Mage::helper('blog')->__('Enabled'),
+                    )
+                ),
+            )
+        );
+
+        /*
+        try {
+            $config = Mage::getSingleton('cms/wysiwyg_config')->getConfig();
+            $config->setData(
+                Mage::helper('news')->recursiveReplace(
+                    '/news_admin/',
+                    '/' . (string)Mage::app()->getConfig()->getNode('admin/routers/adminhtml/args/frontName') . '/',
+                    $config->getData()
+                )
+            );
+        } catch (Exception $ex) {
+            $config = null;
+        }
+        */
+
+        $fieldset->addField(
+            'announce',
+            'editor',
+            array(
+                'label' => Mage::helper('news')->__('Announce'),
+                'name' => 'announce',
+                'style' => 'width:700px; height:100px;',
             )
         );
 
         $fieldset->addField(
-            'announce',
-            'text',
+            'content',
+            'editor',
             array(
-                'label' => Mage::helper('news')->__('Announce'),
-                'name' => 'announce',
-                'required' => true
+                'label' => Mage::helper('news')->__('Content'),
+                'name' => 'content',
+                'style' => 'width:700px; height:500px;',
             )
         );
 
@@ -62,41 +97,13 @@ class Ism_News_Block_Manage_Post_Edit_Form extends Mage_Adminhtml_Block_Widget_F
             )
         );
 
-        $fieldset->addField(
-            'is_published',
-            'select',
-            array(
-                'label' => Mage::helper('news')->__('Published'),
-                'name' => 'is_published',
-                'required' => true,
-                'values' => array('-1' => 'Please Select..', '0' => 'No', '1' => 'Yes'),
-            )
-        );
-
-        /**
-         * Check is single store mode
-         */
-        if (!Mage::app()->isSingleStoreMode()) {
-            $fieldset->addField(
-                'store_id',
-                'multiselect',
-                array(
-                    'name' => 'stores[]',
-                    'label' => Mage::helper('cms')->__('Store View'),
-                    'title' => Mage::helper('cms')->__('Store View'),
-                    'required' => true,
-                    'values' => Mage::getSingleton('adminhtml/system_store')
-                            ->getStoreValuesForForm(false, true),
-                )
-            );
+        if (Mage::getSingleton('adminhtml/session')->getNewsData()) {
+            $form->setValues(Mage::getSingleton('adminhtml/session')->getNewsData());
+            Mage::getSingleton('adminhtml/session')->setNewsData(null);
+        } elseif (Mage::registry('news_data')) {
+            $form->setValues(Mage::registry('news_data')->getData());
         }
 
-        if (Mage::getSingleton('adminhtml/session')->getBlogData()) {
-            $form->setValues(Mage::getSingleton('adminhtml/session')->getBlogData());
-            Mage::getSingleton('adminhtml/session')->setBlogData(null);
-        } elseif (Mage::registry('blog_data')) {
-            $form->setValues(Mage::registry('blog_data')->getData());
-        }
         return parent::_prepareForm();
     }
 } 

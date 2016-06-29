@@ -6,9 +6,6 @@ class Ism_News_Manage_PostController extends Mage_Adminhtml_Controller_Action
     {
         $this->_title($this->__('Posts'))->_title($this->__('News'));
         $this->loadLayout()->_setActiveMenu('cms/news');
-        $this->_addBreadcrumb(
-            Mage::helper('adminhtml')->__('News Manager 1'), Mage::helper('adminhtml')->__('News Manager 2')
-        );
         //$this->_addContent($this->getLayout()->createBlock('news/manage_post'));
         $this->renderLayout();
     }
@@ -51,16 +48,8 @@ class Ism_News_Manage_PostController extends Mage_Adminhtml_Controller_Action
             $this->loadLayout();
             $this->_setActiveMenu('cms/news');
             $this->_title($this->__('Edit post'))->_title($this->__('News'));
-
-            $this->_addBreadcrumb(
-                Mage::helper('adminhtml')->__('Blog Manager'), Mage::helper('adminhtml')->__('BlogManager')
-            );
-            $this->_addBreadcrumb(
-                Mage::helper('adminhtml')->__('Category Manager'), Mage::helper('adminhtml')->__('Category Manager')
-            );
-
             $this->getLayout()->getBlock('head')->setCanLoadExtJs(true);
-
+            
             $this->_addContent($this->getLayout()->createBlock('news/manage_post_edit'));
 
             $this->renderLayout();

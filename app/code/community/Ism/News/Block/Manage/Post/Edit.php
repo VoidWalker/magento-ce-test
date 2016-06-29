@@ -30,4 +30,15 @@ class Ism_News_Block_Manage_Post_Edit extends Mage_Adminhtml_Block_Widget_Form_C
             }
         ";
     }
+
+    public function getHeaderText()
+    {
+        if (Mage::registry('news_data') && Mage::registry('news_data')->getId()) {
+            return Mage::helper('news')->__(
+                "Edit Post '%s'", $this->escapeHtml(Mage::registry('news_data')->getTitle())
+            );
+        } else {
+            return Mage::helper('news')->__('Add Post');
+        }
+    }
 } 
