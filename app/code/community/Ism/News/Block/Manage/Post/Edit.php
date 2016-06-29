@@ -10,8 +10,8 @@ class Ism_News_Block_Manage_Post_Edit extends Mage_Adminhtml_Block_Widget_Form_C
         $this->_blockGroup = 'news';
         $this->_controller = 'manage_post';
 
-        $this->_updateButton('save', 'label', Mage::helper('news')->__('Save Category'));
-        $this->_updateButton('delete', 'label', Mage::helper('news')->__('Delete Category'));
+        $this->_updateButton('save', 'label', Mage::helper('news')->__('Save Post'));
+        $this->_updateButton('delete', 'label', Mage::helper('news')->__('Delete Post'));
 
         $this->_addButton(
             'saveandcontinue',

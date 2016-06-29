@@ -15,6 +15,7 @@ class Ism_News_Block_Manage_Post_Grid extends Mage_Adminhtml_Block_Widget_Grid
     {
         $collection = Mage::getModel('news/news')->getCollection();
         $this->setCollection($collection);
+
         return parent::_prepareCollection();
     }
 
@@ -49,11 +50,29 @@ class Ism_News_Block_Manage_Post_Grid extends Mage_Adminhtml_Block_Widget_Grid
         );
 
         $this->addColumn(
+            'date',
+            array(
+                'header' => Mage::helper('news')->__('Date'),
+                'index' => 'date',
+                'type' => 'datetime',
+                'width' => '120px',
+                'gmtoffset' => true,
+                'default' => ' -- '
+            )
+        );
+
+        $this->addColumn(
             'is_published',
             array(
                 'header' => Mage::helper('news')->__('Publish status'),
                 'align' => 'left',
+                'width' => '80px',
                 'index' => 'is_published',
+                'type' => 'options',
+                'options' => array(
+                    0 => Mage::helper('blog')->__('Disabled'),
+                    1 => Mage::helper('blog')->__('Enabled')
+                )
             )
         );
 
@@ -66,10 +85,9 @@ class Ism_News_Block_Manage_Post_Grid extends Mage_Adminhtml_Block_Widget_Grid
                 'getter' => 'getId',
                 'actions' => array(
                     array(
-                        'caption' => Mage::helper('news')->__('Delete'),
-                        'url' => array('base' => '*/*/delete'),
+                        'caption' => Mage::helper('news')->__('Edit'),
+                        'url' => array('base' => '*/*/edit'),
                         'field' => 'id',
-                        'confirm' => $this->__('Are you sure?')
                     )
                 ),
                 'filter' => false,

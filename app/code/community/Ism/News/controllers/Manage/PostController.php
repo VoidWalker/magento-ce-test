@@ -103,4 +103,28 @@ class Ism_News_Manage_PostController extends Mage_Adminhtml_Controller_Action
         Mage::getSingleton('adminhtml/session')->addError(Mage::helper('news')->__('Unable to find post to save'));
         $this->_redirect('*/*/');
     }
+
+    public function newAction()
+    {
+        $id = $this->getRequest()->getParam('id');
+        $model = Mage::getModel('news/news')->load($id);
+
+        $data = Mage::getSingleton('adminhtml/session')->getFormData(true);
+        if (!empty($data)) {
+            $model->setData($data);
+        }
+
+        Mage::register('news_data', $model);
+
+        $this->loadLayout();
+        $this->_setActiveMenu('cms/news');
+        $this->_title($this->__('Add new post'))->_title($this->__('News'));
+
+        $this->getLayout()->getBlock('head')->setCanLoadExtJs(true);
+
+        $this->_addContent($this->getLayout()->createBlock('news/manage_post_edit'));
+        
+        $this->getLayout()->getBlock('head')->setCanLoadTinyMce(true);
+        $this->renderLayout();
+    }
 } 

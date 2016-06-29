@@ -85,15 +85,18 @@ class Ism_News_Block_Manage_Post_Edit_Form extends Mage_Adminhtml_Block_Widget_F
             )
         );
 
+        $outputFormat = Mage::app()->getLocale()->getDateTimeFormat(Mage_Core_Model_Locale::FORMAT_TYPE_MEDIUM);
+
         $fieldset->addField(
             'date',
             'date',
             array(
-                'label' => Mage::helper('news')->__('Date'),
                 'name' => 'date',
+                'label' => Mage::helper('news')->__('Date'),
+                'title' => Mage::helper('news')->__('Date'),
                 'image' => $this->getSkinUrl('images/grid-cal.gif'),
-                'format' => Mage::app()->getLocale()->getDateTimeFormat(Mage_Core_Model_Locale::FORMAT_TYPE_MEDIUM),
-                'required' => true,
+                'format' => $outputFormat,
+                'time'   => true,
                 'style' => 'width:200px;'
             )
         );
