@@ -79,8 +79,9 @@ class Ism_News_Block_Manage_Post_Edit_Form extends Mage_Adminhtml_Block_Widget_F
             'content',
             'editor',
             array(
-                'label' => Mage::helper('news')->__('Content'),
                 'name' => 'content',
+                'label' => Mage::helper('news')->__('Content'),
+                'title' => Mage::helper('news')->__('Content'),
                 'style' => 'width:700px; height:500px;'
             )
         );

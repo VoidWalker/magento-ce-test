@@ -2,6 +2,11 @@
 
 class Ism_News_Manage_PostController extends Mage_Adminhtml_Controller_Action
 {
+    protected function _isAllowed()
+    {
+        return Mage::getSingleton('admin/session')->isAllowed('admin/cms/news');
+    }
+    
     public function indexAction()
     {
         $this->_title($this->__('Posts'))->_title($this->__('News'));
