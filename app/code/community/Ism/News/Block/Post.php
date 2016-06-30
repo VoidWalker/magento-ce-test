@@ -7,7 +7,8 @@ class Ism_News_Block_Post extends Mage_Core_Block_Template
         $postId = $this->getRequest()->getParam('id');
         $model = Mage::getModel('news/news')->load($postId);
 
-        //$data = $model->getData();
+        Mage::dispatchEvent('post_before_render', array('model' => $model));
+        
         return $model;
     }
 

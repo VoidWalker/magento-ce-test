@@ -6,7 +6,7 @@ class Ism_News_Manage_PostController extends Mage_Adminhtml_Controller_Action
     {
         return Mage::getSingleton('admin/session')->isAllowed('admin/cms/news');
     }
-    
+
     public function indexAction()
     {
         $this->_title($this->__('Posts'))->_title($this->__('News'));
@@ -82,6 +82,8 @@ class Ism_News_Manage_PostController extends Mage_Adminhtml_Controller_Action
                     $model->setDate(Mage::getModel('core/date')->gmtDate());
                 }
 
+                Mage::dispatchEvent('post_before_save_action', array('model' => $model));
+                
                 $model->save();
 
                 Mage::getSingleton('adminhtml/session')->addSuccess(
@@ -128,7 +130,7 @@ class Ism_News_Manage_PostController extends Mage_Adminhtml_Controller_Action
         $this->getLayout()->getBlock('head')->setCanLoadExtJs(true);
 
         $this->_addContent($this->getLayout()->createBlock('news/manage_post_edit'));
-        
+
         $this->getLayout()->getBlock('head')->setCanLoadTinyMce(true);
         $this->renderLayout();
     }
