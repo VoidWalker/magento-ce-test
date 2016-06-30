@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<layout version="0.1.0">
-    <news_admin_manage_post_index>
-        <reference name="content">
-            <block type="news/manage_post" name="news"/>
-        </reference>
-    </news_admin_manage_post_index>
-</layout>
