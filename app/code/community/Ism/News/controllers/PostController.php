@@ -4,12 +4,16 @@ class Ism_News_PostController extends Mage_Core_Controller_Front_Action
 {
     public function viewAction()
     {
+        $this->loadLayout();
+        $this->renderLayout();
+        /*
         $params = $this->getRequest()->getParams();
         $newsPost = Mage::getModel('news/news');
         echo("Loading the blogpost with an ID of " . $params['id']);
         $newsPost->load($params['id']);
         $data = $newsPost->getData();
         var_dump($data);
+        */
     }
 
     public function viewAllAction()
