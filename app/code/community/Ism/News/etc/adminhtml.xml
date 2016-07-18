@@ -12,6 +12,7 @@
             </children>
          </cms>
     </menu>
+
     <acl>
         <resources>
             <admin>
