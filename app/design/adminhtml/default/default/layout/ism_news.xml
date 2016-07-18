@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <layout version="0.1.0">
-    <news_admin_manage_post_index>
+    <ism_news_adminhtml_post_index>
         <reference name="content">
-            <block type="news/manage_post" name="news"/>
+            <block type="news/adminhtml_post" name="news"/>
         </reference>
-    </news_admin_manage_post_index>
+    </ism_news_adminhtml_post_index>
 
-    <news_admin_manage_post_edit>
+    <ism_news_adminhtml_post_edit>
         <reference name="content">
-            <block type="news/manage_post_edit" name="news_edit"/>
+            <block type="news/adminhtml_post_edit" name="news_edit"/>
         </reference>
-    </news_admin_manage_post_edit>
+    </ism_news_adminhtml_post_edit>
 
-    <news_admin_manage_post_new>
-        <update handle="news_admin_manage_post_edit"/>
-    </news_admin_manage_post_new>
+    <ism_news_adminhtml_post_new>
+        <update handle="ism_news_adminhtml_post_edit"/>
+    </ism_news_adminhtml_post_new>
 
 </layout>
