@@ -33,6 +33,16 @@
                 </news>
             </updates>
         </layout>
+        <events>
+            <page_block_html_topmenu_gethtml_before>
+                <observers>
+                    <news>
+                        <class>news/observer</class>
+                        <method>addTopmenuLink</method>
+                    </news>
+                </observers>
+            </page_block_html_topmenu_gethtml_before>
+        </events>
     </frontend>
     <adminhtml>
         <menu>
