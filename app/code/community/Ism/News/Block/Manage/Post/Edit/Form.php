@@ -50,21 +50,6 @@ class Ism_News_Block_Manage_Post_Edit_Form extends Mage_Adminhtml_Block_Widget_F
             )
         );
 
-        /*
-        try {
-            $config = Mage::getSingleton('cms/wysiwyg_config')->getConfig();
-            $config->setData(
-                Mage::helper('news')->recursiveReplace(
-                    '/news_admin/',
-                    '/' . (string)Mage::app()->getConfig()->getNode('admin/routers/adminhtml/args/frontName') . '/',
-                    $config->getData()
-                )
-            );
-        } catch (Exception $ex) {
-            $config = null;
-        }
-        */
-
         $fieldset->addField(
             'announce',
             'editor',
@@ -97,7 +82,7 @@ class Ism_News_Block_Manage_Post_Edit_Form extends Mage_Adminhtml_Block_Widget_F
                 'title' => Mage::helper('news')->__('Date'),
                 'image' => $this->getSkinUrl('images/grid-cal.gif'),
                 'format' => $outputFormat,
-                'time'   => true,
+                'time' => true,
                 'style' => 'width:200px;'
             )
         );
