@@ -8,13 +8,13 @@
 
     <admin>
         <routers>
-            <news_admin>
+            <news>
                 <use>admin</use>
                 <args>
                     <module>Ism_News</module>
-                    <frontName>news_admin</frontName>
+                    <frontName>news</frontName>
                 </args>
-            </news_admin>
+            </news>
         </routers>
     </admin>
 
