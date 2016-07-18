@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <news_index_index>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/2columns-right.phtml</template>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="news/news" name="news" template="ism_news/list.phtml"/>
+        </reference>
+    </news_index_index>
+    <news_post_view>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/2columns-right.phtml</template>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="news/post" name="post" template="ism_news/post.phtml"/>
+        </reference>
+    </news_post_view>
+</layout>
