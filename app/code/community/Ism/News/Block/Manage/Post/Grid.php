@@ -70,8 +70,8 @@ class Ism_News_Block_Manage_Post_Grid extends Mage_Adminhtml_Block_Widget_Grid
                 'index' => 'is_published',
                 'type' => 'options',
                 'options' => array(
-                    0 => Mage::helper('blog')->__('Disabled'),
-                    1 => Mage::helper('blog')->__('Enabled')
+                    0 => Mage::helper('news')->__('Disabled'),
+                    1 => Mage::helper('news')->__('Enabled')
                 )
             )
         );
