@@ -40,11 +40,11 @@ class Ism_News_Block_Manage_Post_Edit_Form extends Mage_Adminhtml_Block_Widget_F
                 'values' => array(
                     array(
                         'value' => 0,
-                        'label' => Mage::helper('blog')->__('Disabled'),
+                        'label' => Mage::helper('news')->__('Disabled'),
                     ),
                     array(
                         'value' => 1,
-                        'label' => Mage::helper('blog')->__('Enabled'),
+                        'label' => Mage::helper('news')->__('Enabled'),
                     )
                 ),
             )
