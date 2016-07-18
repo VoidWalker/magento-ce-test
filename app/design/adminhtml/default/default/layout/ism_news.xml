@@ -5,4 +5,15 @@
             <block type="news/manage_post" name="news"/>
         </reference>
     </news_admin_manage_post_index>
+
+    <news_admin_manage_post_edit>
+        <reference name="content">
+            <block type="news/manage_post_edit" name="news_edit"/>
+        </reference>
+    </news_admin_manage_post_edit>
+
+    <news_admin_manage_post_new>
+        <update handle="news_admin_manage_post_edit"/>
+    </news_admin_manage_post_new>
+
 </layout>

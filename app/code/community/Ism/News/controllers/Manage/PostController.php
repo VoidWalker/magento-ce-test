@@ -7,11 +7,22 @@ class Ism_News_Manage_PostController extends Mage_Adminhtml_Controller_Action
         return Mage::getSingleton('admin/session')->isAllowed('admin/cms/news');
     }
 
+    protected function _initAction()
+    {
+        // load layout, set active menu and breadcrumbs
+        $this->loadLayout()
+            ->_setActiveMenu('cms/news')
+            ->_addBreadcrumb(Mage::helper('news')->__('CMS'), Mage::helper('news')->__('CMS'))
+            ->_addBreadcrumb(Mage::helper('news')->__('News'), Mage::helper('news')->__('News'));
+
+        return $this;
+    }
+
     public function indexAction()
     {
-        $this->_title($this->__('Posts'))->_title($this->__('News'));
-        $this->loadLayout()->_setActiveMenu('cms/news');
-        //$this->_addContent($this->getLayout()->createBlock('news/manage_post'));
+        $this->_title($this->__('CMS'))->_title($this->__('News'));
+
+        $this->_initAction();
         $this->renderLayout();
     }
 
@@ -39,29 +50,33 @@ class Ism_News_Manage_PostController extends Mage_Adminhtml_Controller_Action
 
     public function editAction()
     {
+        $this->_title($this->__('CMS'))->_title($this->__('News'));
+
         $id = $this->getRequest()->getParam('id');
-        $model = Mage::getModel('news/news')->load($id);
+        $model = Mage::getModel('news/news');
 
-        if ($model->getId() || $id == 0) {
-            $data = Mage::getSingleton('adminhtml/session')->getFormData(true);
-            if (!empty($data)) {
-                $model->setData($data);
+        if ($id) {
+            $model->load($id);
+            if (!$model->getId()) {
+                Mage::getSingleton('adminhtml/session')->addError(Mage::helper('cms')->__('This block no longer exists.'));
+                $this->_redirect('*/*/');
+
+                return;
             }
-
-            Mage::register('news_data', $model);
-
-            $this->loadLayout();
-            $this->_setActiveMenu('cms/news');
-            $this->_title($this->__('Edit post'))->_title($this->__('News'));
-            $this->getLayout()->getBlock('head')->setCanLoadExtJs(true);
-
-            $this->_addContent($this->getLayout()->createBlock('news/manage_post_edit'));
-
-            $this->renderLayout();
-        } else {
-            Mage::getSingleton('adminhtml/session')->addError(Mage::helper('news')->__('Post does not exist'));
-            $this->_redirect('*/*/');
         }
+
+        $this->_title($model->getId() ? $model->getTitle() : $this->__('New Post'));
+
+        $data = Mage::getSingleton('adminhtml/session')->getFormData(true);
+        if (!empty($data)) {
+            $model->setData($data);
+        }
+
+        Mage::register('news_data', $model);
+
+        $this->_initAction()
+            ->_addBreadcrumb($id ? Mage::helper('news')->__('Edit Post') : Mage::helper('news')->__('New Post'), $id ? Mage::helper('news')->__('Edit Post') : Mage::helper('news')->__('New Post'))
+            ->renderLayout();
     }
 
     public function saveAction()
@@ -83,7 +98,7 @@ class Ism_News_Manage_PostController extends Mage_Adminhtml_Controller_Action
                 }
 
                 Mage::dispatchEvent('post_before_save_action', array('model' => $model));
-                
+
                 $model->save();
 
                 Mage::getSingleton('adminhtml/session')->addSuccess(
@@ -113,25 +128,7 @@ class Ism_News_Manage_PostController extends Mage_Adminhtml_Controller_Action
 
     public function newAction()
     {
-        $id = $this->getRequest()->getParam('id');
-        $model = Mage::getModel('news/news')->load($id);
-
-        $data = Mage::getSingleton('adminhtml/session')->getFormData(true);
-        if (!empty($data)) {
-            $model->setData($data);
-        }
-
-        Mage::register('news_data', $model);
-
-        $this->loadLayout();
-        $this->_setActiveMenu('cms/news');
-        $this->_title($this->__('Add new post'))->_title($this->__('News'));
-
-        $this->getLayout()->getBlock('head')->setCanLoadExtJs(true);
-
-        $this->_addContent($this->getLayout()->createBlock('news/manage_post_edit'));
-
-        $this->getLayout()->getBlock('head')->setCanLoadTinyMce(true);
-        $this->renderLayout();
+        // the same form is used to create and edit
+        $this->_forward('edit');
     }
 } 
