@@ -41,7 +41,7 @@ class ISM_DeliveryAt_Block_Checkout_Onepage_Shipping_Method_Deliveryat extends M
             $options_ = array(
                 'label' => $hlp->__('Delivery Time Interval'),
                 'title' => $hlp->__('Delivery Time Interval'),
-                'name' => 'deliveryat[delivery_time]',
+                'name' => 'deliveryat[delivery_time_id]',
                 'required' => Mage::getStoreConfig('deliveryat/time_field/required', $storeId),
                 'values' => array(
                     array(
