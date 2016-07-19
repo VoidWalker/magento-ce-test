@@ -32,7 +32,7 @@ class ISM_DeliveryAt_Block_Checkout_Onepage_Shipping_Method_Deliveryat extends M
                 'onclick' => 'deliverydate_trig(delivery_date_trig)',
                 'after_element_html' => $afterElementHtml,
                 'image' => $this->getSkinUrl('images/ism/deliveryat/grid-cal.gif'),
-                'format' => Mage::app()->getLocale()->getDateTimeFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT)
+                'format' => Mage::app()->getLocale()->getDateFormat(Mage_Core_Model_Locale::FORMAT_TYPE_MEDIUM)
             ));
 
         if (Mage::getStoreConfig('deliveryat/time_field/enabled', $storeId)) {
