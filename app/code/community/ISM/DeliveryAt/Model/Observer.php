@@ -28,22 +28,17 @@ class ISM_DeliveryAt_Model_Observer
                 }
             }
 
+            // Sales Order View Page
+            $blockClass = Mage::getConfig()->getBlockClassName('adminhtml/sales_order_view_info');
+            if (($block->getNameInLayout() == 'order_info') && ($child = $block->getChild('ism.deliveryat.block'))) {
+                $html .= $child->toHtml();
+            }
+
             $transport->setHtml($html);
         }
     }
 
-    public function onSalesQuoteSaveAfter($observer)
-    {
-        if ($data = Mage::app()->getRequest()->getPost('deliveryat')) {
-            $checkout = Mage::getSingleton('checkout/type_onepage')->getCheckout();
-            if (isset($data['delivery_time_id'])) {
-                $data['delivery_time'] = Mage::helper('deliveryat')->getIntervalById($data['delivery_time_id']);
-            }
-            $checkout->setIsmDeliveryDate($data);
-        }
-    }
-
-    public function onSalesQuoteSaveBefore($observer)
+    public function onOnepageSaveShippingMethod($observer)
     {
         $data = $observer->getRequest()->getPost('deliveryat');
         $quote = $observer->getQuote();
