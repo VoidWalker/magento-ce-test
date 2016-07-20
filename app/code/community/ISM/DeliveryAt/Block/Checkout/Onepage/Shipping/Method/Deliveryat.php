@@ -19,6 +19,26 @@ class ISM_DeliveryAt_Block_Checkout_Onepage_Shipping_Method_Deliveryat extends M
 
         $afterElementHtml = '<div type="anchor" id="anchor_delivery_date"></div>';
         $afterElementHtml .= '<div style="padding: 4px;"></div>';
+        $afterElementHtml .= '<script type="text/javascript">
+            //<![CDATA[
+            Calendar.setup({
+            inputField: "delivery_date",
+            ifFormat: "%Y-%m-%d",
+            showsTime: false,
+            button: "delivery_date_trig",
+            align: "Bl",
+            singleClick: true,
+            disableFunc: function(date) {
+                var What = new Date(date.getFullYear(),date.getMonth(),date.getDate());
+                var now = new Date();
+                var Min = new Date(now.getFullYear(),now.getMonth(),(now.getDate()+1));
+                if (Min >= What)
+                    return true;
+                return false;
+            }
+            });
+            //]]>
+            </script>';
 
         $fieldset->addField(
             'delivery_date',
