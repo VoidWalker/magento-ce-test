@@ -20,9 +20,11 @@ class ISM_DeliveryAt_Model_Observer
             if ($blockClass == get_class($block)) {
                 $checkout = Mage::getSingleton('checkout/type_onepage')->getCheckout();
                 if ($checkout->getStepData('shipping_method', 'complete')
-                    && !$checkout->getStepData('payment', 'complete')) {
+                    && !$checkout->getStepData('payment', 'complete')
+                ) {
+                    $pos = strripos($html, '</dd>');
                     $insert = Mage::app()->getLayout()->createBlock('deliveryat/checkout_onepage_progress_deliveryat')->toHtml();
-                    $html .= $insert;
+                    $html = substr_replace($html, $insert, $pos - 1, 0);
                 }
             }
 
@@ -38,6 +40,18 @@ class ISM_DeliveryAt_Model_Observer
                 $data['delivery_time'] = Mage::helper('deliveryat')->getIntervalById($data['delivery_time_id']);
             }
             $checkout->setIsmDeliveryDate($data);
+        }
+    }
+
+    public function onSalesQuoteSaveBefore($observer)
+    {
+        $data = $observer->getRequest()->getPost('deliveryat');
+        $quote = $observer->getQuote();
+
+        $quote->setDeliveryDate($data['delivery_date']);
+        if (isset($data['delivery_time_id'])) {
+            $data['delivery_time'] = Mage::helper('deliveryat')->getIntervalById($data['delivery_time_id']);
+            $quote->setDeliveryTime($data['delivery_time']);
         }
     }
 }

@@ -10,8 +10,11 @@ class ISM_DeliveryAt_Block_Checkout_Onepage_Progress_Deliveryat extends Mage_Cor
 
     public function getDeliveryDateProgress()
     {
-        $checkout = Mage::getSingleton('checkout/type_onepage')->getCheckout();
-        $deliveryDate = $checkout->getIsmDeliveryDate();
+        $quote = Mage::getSingleton("checkout/cart")->getQuote();
+        $deliveryDate['delivery_date'] = $quote->getDeliveryDate();
+        if ($quote->getDeliveryTime()) {
+            $deliveryDate['delivery_time'] = $quote->getDeliveryTime();
+        }
 
         return $deliveryDate;
     }

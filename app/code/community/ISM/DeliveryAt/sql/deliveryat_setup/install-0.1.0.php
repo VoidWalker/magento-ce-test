@@ -11,6 +11,7 @@ $connection->addColumn(
     'delivery_date',
     array(
         'type' => Varien_Db_Ddl_Table::TYPE_DATE,
+        'default' => null,
         'comment' => 'Stores delivery date chosen by customer.'
     )
 );
@@ -21,8 +22,6 @@ $connection->addColumn(
     array(
         'type' => Varien_Db_Ddl_Table::TYPE_TEXT,
         'length' => 50,
-        'unsigned' => false,
-        'nullable' => false,
         'default' => null,
         'comment' => 'Stores delivery time.'
     )
@@ -33,6 +32,7 @@ $connection->addColumn(
     'delivery_date',
     array(
         'type' => Varien_Db_Ddl_Table::TYPE_DATE,
+        'default' => null,
         'comment' => 'Stores delivery date chosen by customer.'
     )
 );
@@ -43,8 +43,6 @@ $connection->addColumn(
     array(
         'type' => Varien_Db_Ddl_Table::TYPE_TEXT,
         'length' => 50,
-        'unsigned' => false,
-        'nullable' => false,
         'default' => null,
         'comment' => 'Stores delivery time.'
     )
