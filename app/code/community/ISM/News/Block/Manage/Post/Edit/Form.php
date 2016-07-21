@@ -2,6 +2,17 @@
 
 class Ism_News_Block_Manage_Post_Edit_Form extends Mage_Adminhtml_Block_Widget_Form
 {
+    /**
+     * Load Wysiwyg on demand and Prepare layout
+     */
+    protected function _prepareLayout()
+    {
+        parent::_prepareLayout();
+        if (Mage::getSingleton('cms/wysiwyg_config')->isEnabled()) {
+            $this->getLayout()->getBlock('head')->setCanLoadTinyMce(true);
+        }
+    }
+
     protected function _prepareForm()
     {
         $form = new Varien_Data_Form(
@@ -60,6 +71,15 @@ class Ism_News_Block_Manage_Post_Edit_Form extends Mage_Adminhtml_Block_Widget_F
             )
         );
 
+        $config = Mage::getSingleton('cms/wysiwyg_config')->getConfig();
+        $config->setData(
+            Mage::helper('news')->recursiveReplace(
+                '/news_admin/',
+                '/' . (string)Mage::app()->getConfig()->getNode('admin/routers/adminhtml/args/frontName') . '/',
+                $config->getData()
+            )
+        );
+
         $fieldset->addField(
             'content',
             'editor',
@@ -67,7 +87,8 @@ class Ism_News_Block_Manage_Post_Edit_Form extends Mage_Adminhtml_Block_Widget_F
                 'name' => 'content',
                 'label' => Mage::helper('news')->__('Content'),
                 'title' => Mage::helper('news')->__('Content'),
-                'style' => 'width:700px; height:500px;'
+                'style' => 'width:700px; height:500px;',
+                'config' => $config
             )
         );
 
