@@ -26,6 +26,7 @@ class Ism_News_Manage_PostController extends Mage_Adminhtml_Controller_Action
         $this->renderLayout();
     }
 
+
     /**
      * Export news grid to CSV format
      */
@@ -34,6 +35,30 @@ class Ism_News_Manage_PostController extends Mage_Adminhtml_Controller_Action
         $fileName = 'news.csv';
         $grid = $this->getLayout()->createBlock('news/manage_post_grid');
         $this->_prepareDownloadResponse($fileName, $grid->getCsvFile());
+    }
+
+    public function massDeleteAction()
+    {
+        $postsIds = $this->getRequest()->getParam('news');
+        if (!is_array($postsIds)) {
+            Mage::getSingleton('adminhtml/session')->addError(Mage::helper('adminhtml')->__('Please select post(s)'));
+        } else {
+            try {
+                foreach ($postsIds as $postId) {
+                    $model = Mage::getModel('news/news')->load($postId);
+                    $model->delete();
+                }
+                Mage::getSingleton('adminhtml/session')->addSuccess(
+                    Mage::helper('adminhtml')->__(
+                        'Total of %d record(s) were successfully deleted', count($postsIds)
+                    )
+                );
+            } catch (Exception $e) {
+                Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
+            }
+        }
+        $this->_redirect('*/*/index');
+
     }
 
     public function deleteAction()
