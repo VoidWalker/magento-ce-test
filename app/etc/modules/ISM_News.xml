@@ -2,9 +2,9 @@
 
 <config>
     <modules>
-        <Ism_News>
+        <ISM_News>
             <active>true</active>
             <codePool>community</codePool>
-        </Ism_News>
+        </ISM_News>
     </modules>
 </config>
