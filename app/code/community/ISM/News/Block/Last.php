@@ -1,6 +1,6 @@
 <?php
 
-class Ism_News_Block_Last extends Mage_Core_Block_Template implements Mage_Widget_Block_Interface
+class ISM_News_Block_Last extends Mage_Core_Block_Template implements Mage_Widget_Block_Interface
 {
     protected function _toHtml()
     {

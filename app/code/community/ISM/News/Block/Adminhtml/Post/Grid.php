@@ -97,6 +97,8 @@ class ISM_News_Block_Adminhtml_Post_Grid extends Mage_Adminhtml_Block_Widget_Gri
             )
         );
 
+        $this->addExportType('*/*/exportCsv', Mage::helper('sales')->__('CSV'));
+
         return parent::_prepareColumns();
     }
 

@@ -12,7 +12,7 @@
                 <use>admin</use>
                 <args>
                     <module>ISM_News</module>
-                    <frontName>news_admin</frontName>
+                    <frontName>ism_news</frontName>
                 </args>
             </ism_news>
         </routers>
@@ -30,17 +30,27 @@
         </routers>
         <layout>
             <updates>
-                <news module="ISM_News">
+                <news module="news">
                     <file>ism/news.xml</file>
                 </news>
             </updates>
         </layout>
+        <events>
+            <page_block_html_topmenu_gethtml_before>
+                <observers>
+                    <news>
+                        <class>news/observer</class>
+                        <method>addTopmenuLink</method>
+                    </news>
+                </observers>
+            </page_block_html_topmenu_gethtml_before>
+        </events>
     </frontend>
 
     <adminhtml>
         <layout>
             <updates>
-                <news module="ISM_News">
+                <news module="news">
                     <file>ism/news.xml</file>
                 </news>
             </updates>
