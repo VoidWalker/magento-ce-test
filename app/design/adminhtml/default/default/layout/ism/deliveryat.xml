@@ -4,7 +4,7 @@
     <adminhtml_sales_order_view>
         <reference name="order_info">
             <block type="deliveryat/adminhtml_sales_order_view_deliveryat" name="ism.deliveryat.block"
-                   template="ism/deliveryat/deliverydate.phtml"/>
+                   template="ism/deliveryat/sales/order/view/deliveryat.phtml"/>
         </reference>
     </adminhtml_sales_order_view>
 </layout>

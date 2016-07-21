@@ -5,7 +5,7 @@ class ISM_DeliveryAt_Block_Checkout_Onepage_Shipping_Method_Deliveryat extends M
     public function __construct()
     {
         parent::__construct();
-        $this->setTemplate('ism/deliveryat/deliveryat.phtml');
+        $this->setTemplate('ism/deliveryat/onepage/shipping_method/deliveryat.phtml');
     }
 
     public function getFormElements()
