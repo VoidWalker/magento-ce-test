@@ -1,0 +1,28 @@
+<?php
+
+$deliveryDate = $this->getDeliveryDateProgress();
+if (is_array($deliveryDate) && !empty($deliveryDate)): ?>
+    <!-- BEGIN Checkout Progress `ISM: DeliveryAt` -->
+    <?php
+    $hlp = Mage::helper('deliveryat');
+    foreach ($deliveryDate as $key => $value) {
+        switch ($key) {
+            case 'delivery_date':
+                if ($value) {
+                    echo '<br />'
+                        . $hlp->__('Delivery Date') . ': '
+                        . $value;
+                }
+                break;
+            case 'delivery_time':
+                if ($value) {
+                    echo '<br />'
+                        . $hlp->__('Delivery Time Interval') . ':<br />'
+                        . $value;
+                }
+                break;
+        }
+    }
+    ?>
+    <!-- END Checkout Progress `ISM: DeliveryAt` -->
+<?php endif; ?>
