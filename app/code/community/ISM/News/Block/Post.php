@@ -1,6 +1,6 @@
 <?php
 
-class Ism_News_Block_Post extends Mage_Core_Block_Template
+class ISM_News_Block_Post extends Mage_Core_Block_Template
 {
     public function getPost()
     {

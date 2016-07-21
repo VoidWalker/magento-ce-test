@@ -11,7 +11,7 @@
                 <use>admin</use>
                 <args>
                     <module>ISM_News</module>
-                    <frontName>news_admin</frontName>
+                    <frontName>ism_news</frontName>
                 </args>
             </ism_news>
         </routers>
@@ -28,7 +28,7 @@
         </routers>
         <layout>
             <updates>
-                <news module="ISM_News">
+                <news module="news">
                     <file>ism/news.xml</file>
                 </news>
             </updates>
@@ -48,7 +48,7 @@
     <adminhtml>
         <layout>
             <updates>
-                <news module="ISM_News">
+                <news module="news">
                     <file>ism/news.xml</file>
                 </news>
             </updates>
