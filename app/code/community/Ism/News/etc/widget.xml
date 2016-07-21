@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<widgets>
+    <news_list type="news/last" translate="name description" module="news">
+        <name>News: Latest Posts</name>
+        <description>Adds a list of latest post from News</description>
+        <parameters>
+            <posts_count>
+                <label>How many posts to show</label>
+                <type>text</type>
+                <visible>1</visible>
+                <required>1</required>
+            </posts_count>
+        </parameters>
+    </news_list>
+</widgets>
