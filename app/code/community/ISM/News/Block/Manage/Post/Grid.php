@@ -1,6 +1,6 @@
 <?php
 
-class Ism_News_Block_Manage_Post_Grid extends Mage_Adminhtml_Block_Widget_Grid
+class ISM_News_Block_Manage_Post_Grid extends Mage_Adminhtml_Block_Widget_Grid
 {
     public function __construct()
     {

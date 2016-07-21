@@ -6,7 +6,7 @@
             <children>
                 <news translate="title" module="news">
                     <title>News</title>
-                    <action>news_admin/manage_post/index</action>
+                    <action>news_admin/adminhtml_post/index</action>
                     <sort_order>20</sort_order>
                 </news>
             </children>
