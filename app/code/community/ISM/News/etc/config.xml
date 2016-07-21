@@ -5,17 +5,19 @@
             <version>0.1.0</version>
         </ISM_News>
     </modules>
+
     <admin>
         <routers>
-            <news_admin>
+            <ism_news>
                 <use>admin</use>
                 <args>
                     <module>ISM_News</module>
-                    <frontName>news_admin</frontName>
+                    <frontName>ism_news</frontName>
                 </args>
-            </news_admin>
+            </ism_news>
         </routers>
     </admin>
+
     <frontend>
         <routers>
             <news>
@@ -28,48 +30,33 @@
         </routers>
         <layout>
             <updates>
-                <news module="ISM_News">
+                <news module="news">
                     <file>ism/news.xml</file>
                 </news>
             </updates>
         </layout>
-    </frontend>
-    <adminhtml>
-        <menu>
-            <cms>
-                <children>
-                    <news translate="title" module="news">
-                        <title>News</title>
-                        <action>news_admin/manage_post/index</action>
-                        <sort_order>20</sort_order>
+        <events>
+            <page_block_html_topmenu_gethtml_before>
+                <observers>
+                    <news>
+                        <class>news/observer</class>
+                        <method>addTopmenuLink</method>
                     </news>
-                </children>
-            </cms>
-        </menu>
-        <acl>
-            <resources>
-                <admin>
-                    <children>
-                        <cms>
-                            <children>
-                                <news translate="title" module="news">
-                                    <title>News</title>
-                                    <sort_order>20</sort_order>
-                                </news>
-                            </children>
-                        </cms>
-                    </children>
-                </admin>
-            </resources>
-        </acl>
+                </observers>
+            </page_block_html_topmenu_gethtml_before>
+        </events>
+    </frontend>
+
+    <adminhtml>
         <layout>
             <updates>
-                <news module="ISM_News">
+                <news module="news">
                     <file>ism/news.xml</file>
                 </news>
             </updates>
         </layout>
     </adminhtml>
+
     <global>
         <models>
             <news>
@@ -104,4 +91,5 @@
             </news>
         </helpers>
     </global>
+
 </config>
