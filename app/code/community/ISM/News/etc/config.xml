@@ -5,17 +5,19 @@
             <version>0.1.0</version>
         </ISM_News>
     </modules>
+
     <admin>
         <routers>
-            <news_admin>
+            <ism_news>
                 <use>admin</use>
                 <args>
                     <module>ISM_News</module>
                     <frontName>news_admin</frontName>
                 </args>
-            </news_admin>
+            </ism_news>
         </routers>
     </admin>
+
     <frontend>
         <routers>
             <news>
@@ -34,34 +36,8 @@
             </updates>
         </layout>
     </frontend>
+
     <adminhtml>
-        <menu>
-            <cms>
-                <children>
-                    <news translate="title" module="news">
-                        <title>News</title>
-                        <action>news_admin/manage_post/index</action>
-                        <sort_order>20</sort_order>
-                    </news>
-                </children>
-            </cms>
-        </menu>
-        <acl>
-            <resources>
-                <admin>
-                    <children>
-                        <cms>
-                            <children>
-                                <news translate="title" module="news">
-                                    <title>News</title>
-                                    <sort_order>20</sort_order>
-                                </news>
-                            </children>
-                        </cms>
-                    </children>
-                </admin>
-            </resources>
-        </acl>
         <layout>
             <updates>
                 <news module="ISM_News">
@@ -70,6 +46,7 @@
             </updates>
         </layout>
     </adminhtml>
+
     <global>
         <models>
             <news>
@@ -104,4 +81,5 @@
             </news>
         </helpers>
     </global>
+
 </config>

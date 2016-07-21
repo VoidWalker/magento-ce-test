@@ -1,6 +1,6 @@
 <?php
 
-class Ism_News_Manage_PostController extends Mage_Adminhtml_Controller_Action
+class ISM_News_Adminhtml_PostController extends Mage_Adminhtml_Controller_Action
 {
     protected function _isAllowed()
     {
