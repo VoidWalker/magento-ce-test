@@ -6,6 +6,7 @@
             <version>0.1.1</version>
         </ISM_DeliveryAt>
     </modules>
+
     <global>
         <models>
             <deliveryat>
@@ -70,6 +71,7 @@
             </sales_convert_order>
         </fieldsets>
     </global>
+
     <frontend>
         <layout>
             <updates>
@@ -100,7 +102,7 @@
             </date_field>
             <time_field>
                 <enabled>1</enabled>
-                <required>0</required>
+                <required>1</required>
             </time_field>
         </deliveryat>
     </default>
