@@ -4,7 +4,7 @@ class Ism_News_Block_Last extends Mage_Core_Block_Template implements Mage_Widge
 {
     protected function _toHtml()
     {
-        $this->setTemplate('ism_news/widget_post.phtml');
+        $this->setTemplate('ism/news/widget_post.phtml');
 
         return $this->setData('news_widget_recent_count', $this->getPostsCount())->renderView();
     }
