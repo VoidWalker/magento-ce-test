@@ -1,0 +1,38 @@
+<!-- BEGIN `ISM: Delivery Date` -->
+<div class="entry-edit" style="margin-bottom: 10px;">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-attributes"><?php echo $this->__('Delivery Date'); ?></h4>
+    </div>
+    <fieldset id="deliverydate">
+        <?php $fields = $this->getDeliveryDateFields() ?>
+        <table cellspacing="0" class="form-list">
+            <tbody>
+            <?php foreach ($fields as $field): ?>
+                <tr>
+                    <td class="label">
+                        <label><?php echo $this->__($field['label']); ?></label>
+                    </td>
+                    <td class="value" id="field_<?php echo $field['code']; ?>">
+                        <?php if ('date' === $field['code']): ?>
+                            <div id="viewblock_date">
+                                <?php if ($field['value']): ?>
+                                    <strong>
+                                        <?php echo date(Mage::helper('deliveryat')->getPhpFormat(), strtotime($field['value'])); ?>
+                                    </strong>
+                                <?php endif; ?>
+                            </div>
+                        <?php elseif ('time' === $field['code']) : ?>
+                            <div id="viewblock_<?php echo $field['code']; ?>">
+                                <strong><?php echo nl2br(str_replace('$', '\$', htmlentities($field['value']))); ?></strong>
+                            </div>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </fieldset>
+</div>
+<div class="clear"></div>
+<div class="clear"></div>
+<!-- END `ISM: Delivery Date` -->
