@@ -26,6 +26,16 @@ class Ism_News_Manage_PostController extends Mage_Adminhtml_Controller_Action
         $this->renderLayout();
     }
 
+    /**
+     * Export news grid to CSV format
+     */
+    public function exportCsvAction()
+    {
+        $fileName = 'news.csv';
+        $grid = $this->getLayout()->createBlock('news/manage_post_grid');
+        $this->_prepareDownloadResponse($fileName, $grid->getCsvFile());
+    }
+
     public function deleteAction()
     {
         if ($this->getRequest()->getParam('id') > 0) {
