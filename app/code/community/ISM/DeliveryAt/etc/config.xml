@@ -102,7 +102,6 @@
             </date_field>
             <time_field>
                 <enabled>1</enabled>
-                <required>1</required>
             </time_field>
         </deliveryat>
     </default>

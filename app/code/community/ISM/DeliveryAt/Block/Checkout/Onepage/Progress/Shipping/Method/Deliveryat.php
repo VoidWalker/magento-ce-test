@@ -1,11 +1,10 @@
 <?php
 
-class ISM_DeliveryAt_Block_Checkout_Onepage_Progress_Deliveryat extends Mage_Core_Block_Template
+class ISM_DeliveryAt_Block_Checkout_Onepage_Progress_Shipping_Method_Deliveryat extends Mage_Core_Block_Template
 {
     public function __construct()
     {
         parent::__construct();
-        $this->setTemplate('ism/deliveryat/onepage/progress/shipping_method/deliveryat.phtml');
     }
 
     public function getDeliveryDateProgress()

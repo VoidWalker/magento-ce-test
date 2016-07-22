@@ -1,38 +1,43 @@
+<?php if (!Mage::helper('deliveryat')->isEnabled()) return; ?>
+<?php if (!$order = $this->getOrder()) return; ?>
+<?php if (!$order->getDeliveryDate() || !$order->getDeliveryTime()) return; ?>
 <!-- BEGIN `ISM: Delivery Date` -->
 <div class="entry-edit" style="margin-bottom: 10px;">
     <div class="entry-edit-head">
         <h4 class="icon-head head-attributes"><?php echo $this->__('Delivery Date'); ?></h4>
     </div>
     <fieldset id="deliverydate">
-        <?php $fields = $this->getDeliveryDateFields() ?>
         <table cellspacing="0" class="form-list">
             <tbody>
-            <?php foreach ($fields as $field): ?>
+            <?php if ($date = $order->getDeliveryDate()): ?>
                 <tr>
                     <td class="label">
-                        <label><?php echo $this->__($field['label']); ?></label>
+                        <label><?php echo $this->__('Delivery Date'); ?></label>
                     </td>
-                    <td class="value" id="field_<?php echo $field['code']; ?>">
-                        <?php if ('date' === $field['code']): ?>
-                            <div id="viewblock_date">
-                                <?php if ($field['value']): ?>
-                                    <strong>
-                                        <?php echo date(Mage::helper('deliveryat')->getPhpFormat(), strtotime($field['value'])); ?>
-                                    </strong>
-                                <?php endif; ?>
-                            </div>
-                        <?php elseif ('time' === $field['code']) : ?>
-                            <div id="viewblock_<?php echo $field['code']; ?>">
-                                <strong><?php echo nl2br(str_replace('$', '\$', htmlentities($field['value']))); ?></strong>
-                            </div>
-                        <?php endif; ?>
+                    <td class="value" id="field_delivery_date">
+                        <div id="viewblock_date">
+                            <strong>
+                                <?php echo date(Mage::helper('deliveryat')->getPhpFormat(), strtotime($date)); ?>
+                            </strong>
+                        </div>
                     </td>
                 </tr>
-            <?php endforeach; ?>
+            <?php endif; ?>
+            <?php if ($time = $order->getDeliveryTime()): ?>
+                <tr>
+                    <td class="label">
+                        <label><?php echo $this->__('Delivery Time'); ?></label>
+                    </td>
+                    <td class="value" id="field_delivery_time">
+                        <div id="viewblock_delivery_time">
+                            <strong><?php echo nl2br(str_replace('$', '\$', htmlentities($time))); ?></strong>
+                        </div>
+                    </td>
+                </tr>
+            <?php endif; ?>
             </tbody>
         </table>
     </fieldset>
 </div>
-<div class="clear"></div>
 <div class="clear"></div>
 <!-- END `ISM: Delivery Date` -->

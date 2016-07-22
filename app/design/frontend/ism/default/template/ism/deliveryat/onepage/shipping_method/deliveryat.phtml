@@ -1,9 +1,61 @@
+<?php if (!Mage::helper('deliveryat')->isEnabled()) return; ?>
 <ul class="form-list">
-    <?php foreach ($this->getFormElements() as $element): ?>
-        <li class="fields">
-            <div class="input-box">
-                <?php echo $element->toHtml(); ?>
+    <li class="fields">
+        <div class="input-box">
+            <div><h4 class="icon-head head-edit-form fieldset-legend"></h4>
+                <fieldset id="deliveryat">
+                    <span class="field-row">
+                        <label for="delivery_date"><?php echo $this->__('Delivery Date') ?></label>
+                            <div style="clear: both;"></div>
+                        <input name="deliveryat[delivery_date]" id="delivery_date" value=""
+                               title="<?php echo $this->__('Delivery Date') ?>"
+                               readonly="1"
+                               onclick="deliverydate_trig(delivery_date_trig)" type="text" class=" input-text"
+                               style="width:110px !important;"/>
+                        <img
+                            src="http://magento-ce-test.local/skin/frontend/base/default/images/ism/deliveryat/grid-cal.gif"
+                            alt=""
+                            class="v-middle" id="delivery_date_trig" title="<?php echo $this->__('Select Date') ?>"
+                            style=""/>
+                        <div type="anchor" id="anchor_delivery_date"></div><div style="padding: 4px;"></div>
+                        <script type="text/javascript">
+                            //<![CDATA[
+                            Calendar.setup({
+                                inputField: "delivery_date",
+                                ifFormat: "%Y-%m-%d",
+                                showsTime: false,
+                                button: "delivery_date_trig",
+                                align: "Bl",
+                                singleClick: true,
+                                disableFunc: function (date) {
+                                    var What = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+                                    var now = new Date();
+                                    var Min = new Date(now.getFullYear(), now.getMonth(), (now.getDate() + 1));
+                                    if (Min >= What)
+                                        return true;
+                                    return false;
+                                }
+                            });
+                            //]]>
+                        </script>
+                    </span>
+                    <?php if ($this->isTimeEnabled()): ?>
+                        <span class="field-row">
+                        <label for="delivery_time"><?php echo $this->__('Delivery Time Interval') ?></label><div
+                                style="clear: both;"></div>
+                        <select id="delivery_time" name="deliveryat[delivery_time_id]"
+                                title="<?php echo $this->__('Delivery Time Interval') ?>"
+                                class="select">
+                            <?php foreach (Mage::helper('deliveryat')->getIntervals() as $key => $value): ?>
+                                <option value="<?php echo $key ?>"><?php echo $value ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <div type="anchor" id="anchor_delivery_time"></div><div style="padding: 4px;"></div>
+                    </span>
+                    <?php endif; ?>
+                </fieldset>
             </div>
-        </li>
-    <?php endforeach; ?>
+        </div>
+    </li>
 </ul>
+

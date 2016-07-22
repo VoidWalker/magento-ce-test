@@ -11,5 +11,27 @@
         <reference name="content">
             <block type="core/html_calendar" name="html_calendar" as="html_calendar" template="page/js/calendar.phtml"/>
         </reference>
+        <!--<reference name="shippingmethod.progress">-->
+            <!--<block type="deliveryat/checkout_onepage_progress_shipping_method_deliveryat"-->
+                   <!--name="onepage.progress.shippingmethod.deliveryat"-->
+                   <!--template="ism/deliveryat/onepage/progress/shippingmethod/deliveryat.phtml"/>-->
+        <!--</reference>-->
     </checkout_onepage_index>
+
+    <!--<checkout_onepage_progress_shipping_method>-->
+        <!--<referance name="root">-->
+            <!--<block type="deliveryat/checkout_onepage_progress_shipping_method_deliveryat"-->
+                   <!--name="onepage.progress.shippingmethod.deliveryat" output="toHtml"-->
+                   <!--template="ism/deliveryat/onepage/progress/shippingmethod/deliveryat.phtml"/>-->
+        <!--</referance>-->
+    <!--</checkout_onepage_progress_shipping_method>-->
+
+    <checkout_onepage_shippingmethod>
+        <reference name="root">
+            <block type="deliveryat/checkout_onepage_shipping_method_deliveryat"
+                   name="onepage.shippingmethod.deliveryat" output="toHtml"
+                   template="ism/deliveryat/onepage/shipping_method/deliveryat.phtml"/>
+        </reference>
+    </checkout_onepage_shippingmethod>
+
 </layout>
