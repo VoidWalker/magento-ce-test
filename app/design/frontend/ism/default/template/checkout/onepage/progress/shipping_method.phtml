@@ -22,7 +22,9 @@
     <?php else: ?>
     <?php echo $this->__('Shipping method has not been selected yet') ?>
     <?php endif; ?>
-    <?php echo $this->getChildHtml('onepage.progress.shippingmethod.deliveryat') ?>
+    <?php echo $this->getLayout()->createBlock('deliveryat/checkout_onepage_progress_shipping_method_deliveryat', 'onepage.progress.shippingmethod.deliveryat')
+        ->setTemplate('ism/deliveryat/onepage/progress/shippingmethod/deliveryat.phtml')
+        ->toHtml() ?>
 </dd>
 <?php else: ?>
 <dt>
