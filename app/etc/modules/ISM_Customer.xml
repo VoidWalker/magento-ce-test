@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<layout>
+    <modules>
+        <ISM_Customer>
+            <active>true</active>
+            <codePool>community</codePool>
+        </ISM_Customer>
+    </modules>
+</layout>
