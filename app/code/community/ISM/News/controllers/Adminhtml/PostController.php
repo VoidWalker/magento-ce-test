@@ -12,18 +12,21 @@ class ISM_News_Adminhtml_PostController extends Mage_Adminhtml_Controller_Action
         // load layout, set active menu and breadcrumbs
         $this->loadLayout()
             ->_setActiveMenu('cms/news')
-            ->_addBreadcrumb(Mage::helper('news')->__('CMS'), Mage::helper('news')->__('CMS'))
-            ->_addBreadcrumb(Mage::helper('news')->__('News'), Mage::helper('news')->__('News'));
+            ->_addBreadcrumb($this->__('CMS'), $this->__('CMS'))
+            ->_addBreadcrumb($this->__('News'), $this->__('News'));
 
         return $this;
     }
 
+    /**
+     * News grid
+     */
     public function indexAction()
     {
         $this->_title($this->__('CMS'))->_title($this->__('News'));
 
-        $this->_initAction();
-        $this->renderLayout();
+        $this->_initAction()
+            ->renderLayout();
     }
 
 
