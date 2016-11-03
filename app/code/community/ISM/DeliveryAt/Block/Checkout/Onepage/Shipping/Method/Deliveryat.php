@@ -10,8 +10,9 @@ class ISM_DeliveryAt_Block_Checkout_Onepage_Shipping_Method_Deliveryat extends M
 
     public function getFormElements()
     {
-        $hlp = Mage::helper('deliveryat');
+        $helper = Mage::helper('deliveryat');
         $storeId = $this->getCurrentStore();
+        $just = 'some var';
 
         $form = new Varien_Data_Form();
         $fieldset = $form->addFieldset('deliveryat', array());
